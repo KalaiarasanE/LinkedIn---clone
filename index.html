@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedElite | Professional Network</title>
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Global Header / Navbar -->
+  <header class="navbar-header">
+    <div class="navbar-container">
+      <div class="navbar-left">
+        <div class="nav-logo" id="logo-btn">
+          <span>in</span>
+          <span class="logo-text">LinkedElite</span>
+        </div>
+        <div class="nav-search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7-3.14 7-7 7-7-3.14-7-7z"/>
+          </svg>
+          <input type="text" id="global-search" placeholder="Search for jobs, posts, people...">
+        </div>
+      </div>
+
+      <nav class="navbar-right">
+        <button class="nav-item active" data-view="feed" aria-label="Home Feed">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+          <span class="nav-item-label">Home</span>
+        </button>
+        <button class="nav-item" data-view="network" aria-label="My Network">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+          </svg>
+          <span class="nav-item-label">Network</span>
+          <span class="badge" id="badge-network">2</span>
+        </button>
+        <button class="nav-item" data-view="jobs" aria-label="Jobs">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+          </svg>
+          <span class="nav-item-label">Jobs</span>
+        </button>
+        <button class="nav-item" data-view="messaging" aria-label="Messaging">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+          </svg>
+          <span class="nav-item-label">Messaging</span>
+          <span class="badge" id="badge-messages">3</span>
+        </button>
+        <button class="nav-item" data-view="notifications" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 4.36 6 6.92 6 10v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
+          <span class="nav-item-label">Notifications</span>
+          <span class="badge" id="badge-notifications">4</span>
+        </button>
+        <button class="nav-item nav-profile" data-view="profile" aria-label="User Profile">
+          <img src="assets/images/avatar_user.jpg" alt="User Avatar" class="nav-avatar-img" id="nav-profile-pic">
+          <span class="nav-item-label">Me</span>
+        </button>
+        <div class="theme-divider"></div>
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="22" height="22">
+            <path fill="currentColor" d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.01a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="22" height="22" style="display: none;">
+            <path fill="currentColor" d="M12.3 22h-.1c-5.5 0-10-4.5-10-10 0-4.7 3.2-8.7 7.7-9.8.6-.2 1.2.2 1.3.8.1.6-.2 1.2-.8 1.3-3.2.8-5.5 3.7-5.5 7.1 0 4.1 3.4 7.5 7.5 7.5 3.4 0 6.3-2.3 7.1-5.5.2-.6.7-.9 1.3-.8.6.1 1 .7.8 1.3-1.1 4.5-5.1 7.7-9.8 7.7z"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav-bar">
+    <button class="mobile-nav-item active" data-view="feed">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="mobile-nav-item" data-view="network">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      <span>Network</span>
+    </button>
+    <button class="mobile-nav-item" data-view="jobs">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
+      <span>Jobs</span>
+    </button>
+    <button class="mobile-nav-item" data-view="messaging">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      <span>Chat</span>
+    </button>
+    <button class="mobile-nav-item" data-view="notifications">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 4.36 6 6.92 6 10v5l-2 2v1h16v-1l-2-2z"/></svg>
+      <span>Alerts</span>
+    </button>
+    <button class="mobile-nav-item" data-view="profile">
+      <img src="assets/images/avatar_user.jpg" alt="Profile" class="mobile-nav-avatar" id="mobile-nav-avatar-pic">
+      <span>Me</span>
+    </button>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="app-layout container">
+    
+    <!-- Left Sidebar: User profile snippet / Network stats -->
+    <aside class="sidebar left-sidebar">
+      <div class="card profile-shortcut-card">
+        <div class="sidebar-banner" style="background-image: url('assets/images/profile_banner.jpg');"></div>
+        <div class="sidebar-avatar-wrapper">
+          <img src="assets/images/avatar_user.jpg" alt="User Avatar" class="sidebar-avatar-img" id="sidebar-profile-pic">
+        </div>
+        <div class="sidebar-profile-info">
+          <h2 class="sidebar-name" id="sidebar-user-name">Alex Morgan</h2>
+          <p class="sidebar-headline" id="sidebar-user-headline">Senior Frontend Architect | UI/UX Specialist | Open Source Enthusiast</p>
+        </div>
+        <hr class="card-divider">
+        <div class="sidebar-stats">
+          <div class="stat-row" id="view-network-stat-btn">
+            <span class="stat-label">Connections</span>
+            <span class="stat-val" id="sidebar-conn-count">482</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Profile views</span>
+            <span class="stat-val text-primary">147</span>
+          </div>
+        </div>
+        <hr class="card-divider">
+        <div class="sidebar-premium-cta">
+          <span class="premium-label">Access exclusive tools & insights</span>
+          <a href="#" class="premium-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" class="premium-icon"><path fill="currentColor" d="M12 2L1 21h22L12 2zm0 4.14L19.43 19H4.57L12 6.14z"/></svg>
+            Try Premium for Free
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links Card -->
+      <div class="card quick-links-card">
+        <h3>Recent</h3>
+        <ul class="quick-links-list">
+          <li>
+            <span class="tag-hash">#</span>
+            <span class="tag-label">webdevelopment</span>
+          </li>
+          <li>
+            <span class="tag-hash">#</span>
+            <span class="tag-label">javascript</span>
+          </li>
+          <li>
+            <span class="tag-hash">#</span>
+            <span class="tag-label">uxdesign</span>
+          </li>
+        </ul>
+        <h3>Groups</h3>
+        <ul class="quick-links-list">
+          <li>
+            <svg viewBox="0 0 24 24" width="16" height="16" class="list-icon"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3z"/></svg>
+            <span class="group-label">Frontend Masters Community</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="16" height="16" class="list-icon"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3z"/></svg>
+            <span class="group-label">UI Designer Collective</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Center Content Panel (Dynamic View Wrapper) -->
+    <section class="main-content">
+      
+      <!-- VIEW 1: HOME FEED -->
+      <div id="feed-view" class="view-panel active-view">
+        <!-- Create Post Card -->
+        <div class="card create-post-card">
+          <div class="post-input-row">
+            <img src="assets/images/avatar_user.jpg" alt="User Avatar" class="post-input-avatar" id="create-post-avatar-pic">
+            <button class="post-trigger-btn" id="open-post-modal-btn">Start a post, share an update...</button>
+          </div>
+          <div class="post-options-row">
+            <button class="post-opt" id="post-opt-photo">
+              <svg viewBox="0 0 24 24" width="24" height="24" class="text-photo"><path fill="currentColor" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <span>Photo</span>
+            </button>
+            <button class="post-opt" id="post-opt-video">
+              <svg viewBox="0 0 24 24" width="24" height="24" class="text-video"><path fill="currentColor" d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 16H5V8h9v8z"/></svg>
+              <span>Video</span>
+            </button>
+            <button class="post-opt" id="post-opt-event">
+              <svg viewBox="0 0 24 24" width="24" height="24" class="text-event"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15H5V10h14v9zm0-11H5V6h14v2zm-7 4H7v5h5v-5z"/></svg>
+              <span>Event</span>
+            </button>
+            <button class="post-opt" id="post-opt-article">
+              <svg viewBox="0 0 24 24" width="24" height="24" class="text-article"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              <span>Write article</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feed Sorting Row -->
+        <div class="feed-sort-row">
+          <div class="line-divider"></div>
+          <span class="sort-label">Sort by: <strong>Top</strong></span>
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+        </div>
+
+        <!-- Posts Feed Container -->
+        <div id="posts-container" class="posts-container">
+          <!-- Dynamic posts will be injected here by script.js -->
+        </div>
+      </div>
+
+
+      <!-- VIEW 2: MY NETWORK -->
+      <div id="network-view" class="view-panel">
+        <div class="card network-card">
+          <div class="network-header">
+            <h2>Manage my network</h2>
+            <span class="count-pill" id="network-total-count">482 Connections</span>
+          </div>
+          
+          <!-- Pending Invitations Section -->
+          <div class="invitations-section" id="invitations-section">
+            <h3 class="section-title">Invitations (<span id="invites-count">2</span>)</h3>
+            <div class="invites-list" id="invites-container">
+              <!-- Dynamic invites go here -->
+            </div>
+          </div>
+
+          <hr class="section-divider">
+
+          <!-- Suggestions Section -->
+          <div class="suggestions-section">
+            <h3 class="section-title">People you may know in engineering</h3>
+            <div class="suggestions-grid" id="suggestions-container">
+              <!-- Dynamic connection suggestions go here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- VIEW 3: JOBS PORTAL -->
+      <div id="jobs-view" class="view-panel">
+        <div class="card jobs-search-card">
+          <h2>Find your next dream career</h2>
+          <div class="jobs-search-inputs">
+            <div class="job-input-wrapper">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              <input type="text" id="job-search-title" placeholder="Search by job title or keywords...">
+            </div>
+            <div class="job-input-wrapper">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <input type="text" id="job-search-location" placeholder="City, state, or remote...">
+            </div>
+            <button class="btn btn-primary" id="job-search-btn">Search</button>
+          </div>
+          <div class="job-filters">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="Full-time">Full-time</button>
+            <button class="filter-pill" data-filter="Remote">Remote</button>
+            <button class="filter-pill" data-filter="Contract">Contract</button>
+            <button class="btn btn-outline btn-sm btn-post-job" id="open-post-job-btn">Post a Job</button>
+          </div>
+        </div>
+
+        <div class="jobs-layout">
+          <!-- Jobs list on left -->
+          <div class="jobs-list" id="jobs-list-container">
+            <!-- Dynamic jobs go here -->
+          </div>
+          <!-- Selected job details on right -->
+          <div class="card job-detail-card" id="job-details-container">
+            <!-- Dynamic job description details go here -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- VIEW 4: MESSAGING INTERFACE -->
+      <div id="messaging-view" class="view-panel">
+        <div class="card messaging-card">
+          <div class="messaging-layout">
+            <!-- Chats list column -->
+            <div class="chats-sidebar">
+              <div class="chats-header">
+                <h2>Messaging</h2>
+                <div class="chats-search">
+                  <input type="text" id="chats-search-input" placeholder="Search messages...">
+                </div>
+              </div>
+              <div class="chats-list" id="chats-list-container">
+                <!-- Dynamic chat threads go here -->
+              </div>
+            </div>
+
+            <!-- Active chat details column -->
+            <div class="chat-main" id="chat-main-container">
+              <!-- Rendered dynamically by script.js. Default state below -->
+              <div class="chat-empty-state">
+                <svg viewBox="0 0 24 24" width="60" height="60" class="text-muted"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                <h3>Select a conversation to start messaging</h3>
+                <p>Stay connected with your professional network in real time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- VIEW 5: NOTIFICATIONS PANEL -->
+      <div id="notifications-view" class="view-panel">
+        <div class="card notifications-card">
+          <div class="notifications-header">
+            <h2>Notifications</h2>
+            <button class="btn-link" id="mark-all-read-btn">Mark all as read</button>
+          </div>
+          <div class="notifications-filters">
+            <button class="filter-pill active" data-notif-filter="all">All</button>
+            <button class="filter-pill" data-notif-filter="unread">Unread</button>
+            <button class="filter-pill" data-notif-filter="mentions">Mentions</button>
+          </div>
+          <div class="notifications-list" id="notifications-container">
+            <!-- Dynamic notifications go here -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- VIEW 6: DETAILED USER PROFILE -->
+      <div id="profile-view" class="view-panel">
+        <!-- Profile Header Card -->
+        <div class="card profile-header-card">
+          <div class="profile-banner-wrapper">
+            <div class="profile-banner-img" id="profile-banner" style="background-image: url('assets/images/profile_banner.jpg');"></div>
+            <button class="edit-banner-btn" id="edit-banner-btn" aria-label="Edit Profile Banner">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </button>
+          </div>
+          <div class="profile-avatar-row">
+            <div class="profile-avatar-container">
+              <img src="assets/images/avatar_user.jpg" alt="User Headshot" class="profile-avatar-img" id="profile-page-avatar">
+              <button class="edit-avatar-overlay-btn" id="edit-avatar-btn" aria-label="Edit Profile Picture">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+              </button>
+            </div>
+            <div class="profile-actions">
+              <button class="btn btn-outline" id="open-edit-profile-btn">Edit intro</button>
+            </div>
+          </div>
+          <div class="profile-intro-details">
+            <h1 class="profile-name" id="profile-user-name">Alex Morgan</h1>
+            <p class="profile-headline" id="profile-user-headline">Senior Frontend Architect | UI/UX Specialist | Open Source Enthusiast</p>
+            <div class="profile-meta-row">
+              <span class="profile-location" id="profile-user-location">San Francisco Bay Area</span>
+              <span class="dot-separator">•</span>
+              <a href="#" class="profile-connections-link"><span id="profile-connections-count">482</span> connections</a>
+            </div>
+            <div class="profile-cta-buttons">
+              <button class="btn btn-primary btn-sm">Open to work</button>
+              <button class="btn btn-outline btn-sm">Add profile section</button>
+              <button class="btn btn-ghost btn-icon" aria-label="More Options">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile About Card -->
+        <div class="card profile-about-card">
+          <div class="card-header-with-action">
+            <h2>About</h2>
+            <button class="btn-icon" id="edit-about-btn" aria-label="Edit About Bio">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </button>
+          </div>
+          <p class="profile-about-text" id="profile-user-about">
+            Passionate Frontend Architect with 8+ years of experience designing and implementing scalable web applications. Strong expert in modern HTML5, CSS3/Sass, JavaScript (ES6+), and responsive layouts. Focused on creating sleek user interfaces, prioritizing accessibility (a11y), clean code design systems, and rendering performance.
+          </p>
+        </div>
+
+        <!-- Experience Card -->
+        <div class="card profile-experience-card">
+          <div class="card-header-with-action">
+            <h2>Experience</h2>
+            <button class="btn-icon" id="add-experience-btn" aria-label="Add Experience">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </button>
+          </div>
+          <div class="experience-list" id="experience-container">
+            <!-- Dynamic experiences go here -->
+          </div>
+        </div>
+
+        <!-- Education Card -->
+        <div class="card profile-education-card">
+          <div class="card-header-with-action">
+            <h2>Education</h2>
+            <button class="btn-icon" id="add-education-btn" aria-label="Add Education">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </button>
+          </div>
+          <div class="education-list" id="education-container">
+            <!-- Dynamic education goes here -->
+          </div>
+        </div>
+
+        <!-- Skills Card -->
+        <div class="card profile-skills-card">
+          <div class="card-header-with-action">
+            <h2>Skills</h2>
+            <button class="btn-icon" id="add-skill-btn" aria-label="Add Skill">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </button>
+          </div>
+          <div class="skills-grid" id="skills-container">
+            <!-- Dynamic skills pills go here -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Right Sidebar: News recommendations / Suggestions -->
+    <aside class="sidebar right-sidebar">
+      <div class="card news-card">
+        <div class="news-header">
+          <h3>LinkedElite News</h3>
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <ul class="news-list">
+          <li>
+            <a href="#" class="news-title">Tech Hiring Trends for 2026</a>
+            <span class="news-meta">4h ago • 1,289 readers</span>
+          </li>
+          <li>
+            <a href="#" class="news-title">The Rise of CSS Anchor Positioning</a>
+            <span class="news-meta">1d ago • 843 readers</span>
+          </li>
+          <li>
+            <a href="#" class="news-title">Web Performance Best Practices</a>
+            <span class="news-meta">2d ago • 2,410 readers</span>
+          </li>
+          <li>
+            <a href="#" class="news-title">How to Ace System Design Interviews</a>
+            <span class="news-meta">3d ago • 4,923 readers</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card recommendations-card" id="sidebar-recommendations-card">
+        <h3>Add to your feed</h3>
+        <div class="recommendations-list" id="sidebar-suggestions-container">
+          <!-- Dynamic sidebar connections go here -->
+        </div>
+      </div>
+
+      <!-- App Footer Links -->
+      <footer class="app-footer">
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Help Center</a>
+          <a href="#">Privacy & Terms</a>
+          <a href="#">Ad Choices</a>
+          <a href="#">Advertising</a>
+          <a href="#">Business Services</a>
+        </div>
+        <p class="footer-copy">LinkedElite Corporation © 2026</p>
+      </footer>
+    </aside>
+
+  </main>
+
+  <!-- ================= MODALS & OVERLAYS ================= -->
+
+  <!-- Modal 1: Create Post Modal -->
+  <div class="modal-overlay" id="post-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Create a post</h2>
+        <button class="modal-close-btn" id="close-post-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-user-row">
+          <img src="assets/images/avatar_user.jpg" alt="User Avatar" class="modal-avatar" id="post-modal-avatar-pic">
+          <div>
+            <h4 id="post-modal-user-name">Alex Morgan</h4>
+            <span class="post-audience">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              Anyone
+            </span>
+          </div>
+        </div>
+        <textarea id="post-text-input" placeholder="What do you want to talk about?" rows="6"></textarea>
+        
+        <!-- Post Image Preview Area -->
+        <div id="post-image-preview-container" class="image-preview-box" style="display: none;">
+          <img id="post-image-preview" src="" alt="Selected Preview">
+          <button class="remove-preview-btn" id="remove-post-image-btn" aria-label="Remove Image">&times;</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions-left">
+          <button class="modal-icon-btn" id="modal-add-photo-btn" aria-label="Add Photo">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+          </button>
+          <!-- Hidden File Input for Image upload -->
+          <input type="file" id="post-file-input" accept="image/*" style="display: none;">
+          
+          <button class="modal-icon-btn" aria-label="Add Video">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          </button>
+          <button class="modal-icon-btn" aria-label="Add Document">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+          </button>
+        </div>
+        <button class="btn btn-primary" id="submit-post-btn" disabled>Post</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Edit Profile Intro Modal -->
+  <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Edit intro</h2>
+        <button class="modal-close-btn" id="close-profile-modal">&times;</button>
+      </div>
+      <form id="edit-profile-form" class="modal-body">
+        <div class="form-group">
+          <label for="edit-name">Full Name*</label>
+          <input type="text" id="edit-name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-headline">Headline*</label>
+          <textarea id="edit-headline" rows="2" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-location">Location*</label>
+          <input type="text" id="edit-location" required>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-profile-edit">Cancel</button>
+        <button class="btn btn-primary" id="save-profile-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Edit About Bio Modal -->
+  <div class="modal-overlay" id="edit-about-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Edit about</h2>
+        <button class="modal-close-btn" id="close-about-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="edit-about-textarea">Summary</label>
+          <textarea id="edit-about-textarea" rows="8"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-about-edit">Cancel</button>
+        <button class="btn btn-primary" id="save-about-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Add Experience Modal -->
+  <div class="modal-overlay" id="experience-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Add experience</h2>
+        <button class="modal-close-btn" id="close-experience-modal">&times;</button>
+      </div>
+      <form id="add-experience-form" class="modal-body">
+        <div class="form-group">
+          <label for="exp-title">Title*</label>
+          <input type="text" id="exp-title" placeholder="e.g., Software Architect" required>
+        </div>
+        <div class="form-group">
+          <label for="exp-company">Company*</label>
+          <input type="text" id="exp-company" placeholder="e.g., Google" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="exp-start">Start Date*</label>
+            <input type="month" id="exp-start" required>
+          </div>
+          <div class="form-group">
+            <label for="exp-end">End Date</label>
+            <input type="month" id="exp-end">
+            <div style="margin-top: 6px;">
+              <input type="checkbox" id="exp-current">
+              <label for="exp-current" style="display:inline; font-size:12px; margin-left:4px;">I currently work here</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exp-description">Description</label>
+          <textarea id="exp-description" rows="4" placeholder="Describe your achievements and tasks..."></textarea>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-experience-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-experience-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Add Education Modal -->
+  <div class="modal-overlay" id="education-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Add education</h2>
+        <button class="modal-close-btn" id="close-education-modal">&times;</button>
+      </div>
+      <form id="add-education-form" class="modal-body">
+        <div class="form-group">
+          <label for="edu-school">School / University*</label>
+          <input type="text" id="edu-school" placeholder="e.g., Stanford University" required>
+        </div>
+        <div class="form-group">
+          <label for="edu-degree">Degree*</label>
+          <input type="text" id="edu-degree" placeholder="e.g., Bachelor of Science" required>
+        </div>
+        <div class="form-group">
+          <label for="edu-field">Field of Study*</label>
+          <input type="text" id="edu-field" placeholder="e.g., Computer Science" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edu-start">Start Year*</label>
+            <input type="number" id="edu-start" min="1900" max="2100" placeholder="e.g., 2018" required>
+          </div>
+          <div class="form-group">
+            <label for="edu-end">End Year (or Expected)*</label>
+            <input type="number" id="edu-end" min="1900" max="2100" placeholder="e.g., 2022" required>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-education-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-education-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Add Skill Modal -->
+  <div class="modal-overlay" id="skill-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Add skill</h2>
+        <button class="modal-close-btn" id="close-skill-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="new-skill-input">Skill Name*</label>
+          <input type="text" id="new-skill-input" placeholder="e.g., Web accessibility, CSS Grid, Performance optimization">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-skill-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-skill-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: Post a Job Modal -->
+  <div class="modal-overlay" id="post-job-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Post a new job opportunity</h2>
+        <button class="modal-close-btn" id="close-post-job-modal">&times;</button>
+      </div>
+      <form id="post-job-form" class="modal-body">
+        <div class="form-group">
+          <label for="post-job-title">Job Title*</label>
+          <input type="text" id="post-job-title" placeholder="e.g., Senior UX/UI Engineer" required>
+        </div>
+        <div class="form-group">
+          <label for="post-job-company">Company Name*</label>
+          <input type="text" id="post-job-company" placeholder="e.g., Microsoft" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="post-job-location">Location*</label>
+            <input type="text" id="post-job-location" placeholder="e.g., Seattle, WA (Hybrid)" required>
+          </div>
+          <div class="form-group">
+            <label for="post-job-type">Job Type*</label>
+            <select id="post-job-type" required>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Remote">Remote</option>
+              <option value="Contract">Contract</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="post-job-salary">Salary Range</label>
+          <input type="text" id="post-job-salary" placeholder="e.g., $140,000 - $180,000 / year">
+        </div>
+        <div class="form-group">
+          <label for="post-job-desc">Job Description*</label>
+          <textarea id="post-job-desc" rows="5" placeholder="Detail the duties, requirements, benefits, and company values..." required></textarea>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancel-post-job-btn">Cancel</button>
+        <button class="btn btn-primary" id="save-post-job-btn">Post Opportunity</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 8: Apply for Job Modal -->
+  <div class="modal-overlay" id="apply-job-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Apply for Job</h2>
+        <button class="modal-close-btn" id="close-apply-job-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="apply-modal-body">
+        <form id="apply-job-form">
+          <div class="form-group">
+            <label>Applying for:</label>
+            <h3 id="apply-job-header-title" class="text-primary" style="margin-top:4px;">Senior Frontend Engineer</h3>
+            <p id="apply-job-header-company" class="text-muted" style="margin-top:2px;">At Google</p>
+          </div>
+          <div class="form-group">
+            <label for="apply-fullname">Full Name*</label>
+            <input type="text" id="apply-fullname" required>
+          </div>
+          <div class="form-group">
+            <label for="apply-email">Email Address*</label>
+            <input type="email" id="apply-email" required>
+          </div>
+          <div class="form-group">
+            <label>Upload Resume (PDF, DOCX)*</label>
+            <div class="file-upload-drag-area" id="apply-resume-dropzone">
+              <svg viewBox="0 0 24 24" width="36" height="36" class="text-primary" style="margin-bottom:8px;"><path fill="currentColor" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+              <p>Drag and drop your resume here, or <span>browse files</span></p>
+              <input type="file" id="apply-resume-input" accept=".pdf,.doc,.docx" style="display:none;" required>
+            </div>
+            <div id="apply-resume-filename" class="selected-filename-display" style="display:none;"></div>
+          </div>
+          <div class="form-group">
+            <label for="apply-cover">Cover Letter (Optional)</label>
+            <textarea id="apply-cover" rows="3" placeholder="Why are you a good fit for this role?"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" id="apply-modal-footer">
+        <button class="btn btn-outline" id="cancel-apply-job-btn">Cancel</button>
+        <button class="btn btn-primary" id="submit-apply-job-btn">Submit Application</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 9: Share Post Modal -->
+  <div class="modal-overlay" id="share-modal">
+    <div class="modal-container max-w-sm">
+      <div class="modal-header">
+        <h2>Share this post</h2>
+        <button class="modal-close-btn" id="close-share-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="share-options-grid">
+          <button class="share-option-btn" id="share-copy-link-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+            <span>Copy Link</span>
+          </button>
+          <button class="share-option-btn" id="share-chat-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9z"/></svg>
+            <span>Send in Message</span>
+          </button>
+          <button class="share-option-btn" id="share-repost-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/></svg>
+            <span>Repost</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Import -->
+  <script src="script.js"></script>
+</body>
+</html>
