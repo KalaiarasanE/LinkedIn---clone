@@ -25,6 +25,7 @@ A fully responsive LinkedIn-inspired social networking platform frontend clone f
 ### 📱 Mobile View
 
 <img src="https://github.com/user-attachments/assets/b35b9db9-596c-4a43-a84d-063f7d4380ca" alt="Mobile Screenshot" width="35%">
+
 ---
 
 ## ✨ Features
