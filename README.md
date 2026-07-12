@@ -2,41 +2,40 @@
 
 # LinkedIn UI Clone
 
-<p align="center">An interactive professional networking application with a real-time mock backend, jobs portal, and chatbot messaging.</p>
-<p align="center">![LinkedIn UI Clone Preview](assets/images/linkedin_hero.jpg)</p>
-<p align="center">🔗🔗 <b><a href="https://kalaiarasane.github.io/LinkedIn---clone/">EXPERIENCE IT LIVE</a></b></p>
+<p align="center">A pixel-close recreation of the LinkedIn home feed — built to master CSS Grid.</p>
 
-> ⚠️ **Educational UI clone for learning purposes only — not affiliated with LinkedIn / Microsoft.** Placeholder images and invented usernames only.
+**Live:** https://kalaiarasane.github.io/LinkedIn---clone/  
+**Source:** https://github.com/KalaiarasanE/LinkedIn---clone  
+
+> ⚠️ Educational UI clone for learning purposes only — not affiliated with LinkedIn. All names, posts and photos are invented.
 
 </div>
 
 ---
 
-## ✨ The showpieces
-- **Jobs Portal & Multi-Step Wizard**: Split-screen job search with filters, resume drag-and-drop uploader, and progress states.
-- **Conversations & Auto-Chatbot**: Selection threads with chat bubbles, scroll anchors, and an automated response system featuring typing indicators.
-- **Dynamic Feed CRUD**: Real-time post publishing, file attachments, and dynamic comments/likes engagement counters.
-- **Live Image Customizations**: Immediate avatar and banner image swappers using client-side `FileReader` APIs.
+## Overview
+The classic 3-column layout: profile card left, feed centre, news right — collapsing correctly on mobile.
 
-## 🧱🧱 Sections
-Home Feed · My Network Hub · Jobs Portal · Messages Pane · Activity Notifications · Detailed Profile View
+## Sections
+1. Top navbar with search + icons
+2. Profile summary card (left column)
+3. "Start a post" box + feed post cards with reaction bar
+4. News / suggestions (right column)
+5. Working reaction toggle or show-more on long posts (JS)
 
-## 🛠🛠 Stack
-HTML5 · CSS3 · Vanilla JS interactions (Antigravity AI / Gemini 3.5 Flash where AI helped) · GitHub Pages
+## Screenshots
+![LinkedIn UI Clone Preview](assets/images/linkedin_hero.jpg)
 
-## 🎨🎨 Inspired by
-- [LinkedIn Web](https://www.linkedin.com) visual components.
-- Clean professional SaaS grids and dark mode styles on [Refero](https://refero.design).
+## Built with
+- HTML5, CSS3 (Grid + Flexbox, mobile-first)
+- Vanilla JS — dynamic SPA view routing, mock chatbot messaging conversations, job listing search/filters, multi-step application wizards, and profile timeline builder edits.
+- Antigravity AI (Gemini 3.5 Flash) for generating professional mockups, CSS Grid layout design patterns, and debugging JavaScript event handlers.
+- Deployed on GitHub Pages
 
-## 🤖🤖 AI usage · 📚📚 What I learned
-
-### AI Usage
-- **Antigravity AI (Gemini 3.5 Flash)** was utilized to design components, structure CSS variables for the dual-theme toggles, and generate product mockup screenshots.
-
-### What I Learned
-- **Mock Bot Responses**: Learned how to implement a timeout-based async chatbot in JavaScript, complete with visual loading states (typing dots) to simulate network delay.
-- **Multi-Step Form Wizards**: Engineered state-tracking logic for job application forms, handling transitions, uploader validation, and success feedback seamlessly.
-- **Local Image Swapping**: Learned to read user-uploaded image files using the browser's `FileReader` API to dynamically replace profile banners and avatars locally.
+## What I learned
+- **Dynamic Theme & Profile Customizers**: Learned how to construct a theme controller that toggles light/dark mode and saves state persistently via local storage, alongside utilizing `FileReader` APIs for local user avatar and banner image swaps.
+- **State-Driven Routing**: Engineered a lightweight client-side router in Vanilla JS to simulate Single Page Application transitions for Feed, Network, Jobs, Messages, and Profile tabs without reloading the page.
+- **Responsive CSS Grid Layouts**: Mastered multi-column desktop grids that collapse cleanly into bottom navigation grids and single-column feed layouts on mobile device viewports.
 
 ---
 
