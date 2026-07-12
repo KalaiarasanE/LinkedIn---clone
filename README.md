@@ -1,65 +1,125 @@
 <div align="center">
 
-# LinkedIn UI Clone
+# 💼 LinkedIn UI Clone
 
-<p align="center">A pixel-close recreation of the LinkedIn home feed — built to master CSS Grid.</p>
-
-**Live:** https://kalaiarasane.github.io/LinkedIn---clone/  
-**Source:** https://github.com/KalaiarasanE/LinkedIn---clone  
-
-> ⚠️ Educational UI clone for learning purposes only — not affiliated with LinkedIn. All names, posts and photos are invented.
+<p align="center">
+A fully responsive LinkedIn-inspired social networking platform frontend clone featuring authentication, professional profiles, news feed, messaging, job listings, and networking components.
+</p>
 
 </div>
 
 ---
 
-## Overview
-The classic 3-column layout: profile card left, feed centre, news right — collapsing correctly on mobile.
+## 🌐 Live Demo
 
-## Sections
-1. Top navbar with search + icons
-2. Profile summary card (left column)
-3. "Start a post" box + feed post cards with reaction bar
-4. News / suggestions (right column)
-5. Working reaction toggle or show-more on long posts (JS)
-
-## Screenshots
-![LinkedIn UI Clone Preview](assets/images/linkedin_hero.jpg)
-
-## Built with
-- HTML5, CSS3 (Grid + Flexbox, mobile-first)
-- Vanilla JS — dynamic SPA view routing, mock chatbot messaging conversations, job listing search/filters, multi-step application wizards, and profile timeline builder edits.
-- Antigravity AI (Gemini 3.5 Flash) for generating professional mockups, CSS Grid layout design patterns, and debugging JavaScript event handlers.
-- Deployed on GitHub Pages
-
-## What I learned
-- **Dynamic Theme & Profile Customizers**: Learned how to construct a theme controller that toggles light/dark mode and saves state persistently via local storage, alongside utilizing `FileReader` APIs for local user avatar and banner image swaps.
-- **State-Driven Routing**: Engineered a lightweight client-side router in Vanilla JS to simulate Single Page Application transitions for Feed, Network, Jobs, Messages, and Profile tabs without reloading the page.
-- **Responsive CSS Grid Layouts**: Mastered multi-column desktop grids that collapse cleanly into bottom navigation grids and single-column feed layouts on mobile device viewports.
+**GitHub Pages:**https://linkediinclones.netlify.app/
 
 ---
 
-## 🎓🎓 About TAP Academy
+## 📸 Screenshots
 
-This project was built during my frontend training at **[TAP Academy](https://thetapacademy.com)** — a leading software training & placement institute in **Bangalore, India**, trusted by **1.5+ lakh students**.
+### 🖥️ Desktop View
 
-**Why students choose TAP Academy:**
-- 🚀🚀 **Get placed in 60 days** — dedicated placement track with daily placement drives
-- 🥽🥽 **Augmented Reality (AR) classrooms** — concepts you can see, not just read
-- 🎤🎤 **Weekly mock interviews** with real-time feedback
-- 👨👨🏫🏫 **1-on-1 mentorship** and round-the-clock doubt support
-- 💻💻 Courses in **Java, Python, Full Stack Development, Data Science & AI**
+<img src="<img width="1918" height="1052" alt="Screenshot 2026-07-12 231728" src="https://github.com/user-attachments/assets/9b26373f-0c39-4d15-a4af-9f1f2776e083" />
+" width="100%">
 
-### ❓ FAQ
+### 📱 Mobile View
 
-**What is TAP Academy?**
-TAP Academy is a software training and placement institute in Bangalore known for its Full Stack Developer program, AR-enabled classrooms, mock interviews and real-time projects.
-
-**Does TAP Academy provide placement support?**
-Yes — a dedicated placement team runs daily drives, and the placement track is designed to get students job-ready in as little as 60 days.
-
-**Where can I learn more?**
-🔗🔗 [Website](https://thetapacademy.com) · [Placements](https://thetapacademy.com/placements) · [LinkedIn](https://in.linkedin.com/company/thetapacademy) · [YouTube](https://www.youtube.com/tapacademy)
+<img src="<img width="497" height="935" alt="Screenshot 2026-07-12 231813" src="https://github.com/user-attachments/assets/b35b9db9-596c-4a43-a84d-063f7d4380ca" />
+" width="35%">
 
 ---
-*⭐ If you liked this project, star the repo — it helps more students discover it.*
+
+## ✨ Features
+
+- Responsive UI
+- Professional LinkedIn-style News Feed
+- User Authentication (Mock Login)
+- Dynamic User Profile Page
+- Connections & Network Section
+- Job Listings with Search & Filters
+- Messaging Interface
+- Notifications Panel
+- Sidebar Navigation
+- Cross-browser compatibility
+- Clean and modern design
+
+---
+
+## 🛠️ Tech Stack
+
+- HTML5
+- CSS3 (Flexbox & Grid)
+- JavaScript (ES6)
+- Responsive Design
+- Git & GitHub
+- AI-assisted development
+
+---
+
+## 🎨 Design References
+
+- Refero – https://refero.design/
+- Godly – https://godly.website/
+- Aceternity UI – https://ui.aceternity.com/
+
+---
+
+## 🤖 AI Tools Used
+
+This project was developed with AI assistance for:
+
+- UI layout ideas
+- Responsive component generation
+- JavaScript functionality
+- CSS optimization
+- Debugging
+- Code refactoring
+- Documentation improvements
+
+---
+
+## 📚 What I Learned
+
+- Building complex responsive layouts using CSS Grid and Flexbox.
+- Creating reusable JavaScript components for dynamic user interfaces.
+- Designing professional dashboard interfaces with clean UI/UX principles.
+
+---
+
+# 🚀 About TAP Academy
+
+TAP Academy is an industry-focused training institute that helps students become job-ready software engineers through hands-on learning, real-world projects, mock interviews, and placement preparation.
+
+### Why TAP Academy?
+
+- Placement-focused training
+- Real-world project development
+- AR-enabled classrooms
+- Daily coding practice
+- Mock interviews
+- Industry mentors
+- Resume building
+- Git & GitHub workflow
+- Frontend and Full Stack Development
+- Career guidance
+- Placement support within 60 days for eligible students
+
+Learn more:
+
+https://thetapacademy.com/
+
+---
+
+## 📥 Installation
+
+```bash
+git clone https://github.com/KalaiarasanE/LinkedIn-Clone.git
+
+cd LinkedIn-Clone
+
+open index.html
+```
+
+---
+
